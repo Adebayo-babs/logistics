@@ -1,0 +1,67 @@
+<%- include ('partials/header') %>
+
+
+<% if (typeof error != 'undefined') { %>
+
+        <% error.forEach(function(error){ %>
+
+              <h5 style="color: red;"><%= error.msg %></h5>
+
+        <% }) %>
+
+      <% } %>
+
+      <% if(success_msg != '') {%>
+        <h6 style="color:green"><%= success_msg %></h6>
+
+      <% } %>
+
+      <% if(error_msg != '') { %>
+
+        <h6 style="color:red"><%= error_msg %></h6>
+
+      <% } %>
+
+    <div>
+
+          
+        <form action="/merchant/takeOrder" method="POST" enctype="multipart/form-data">
+          <h2>Take Order Page</h2>
+          <a href="/merchant/dashboard">Dashboard</a>
+          <a href="/merchant/viewOrder">View Orders</a>
+          <p>Logged in Merchant: <strong><%= username %></strong></p>
+            
+          <p><input type="text" name="pName"  placeholder="Product Name"></p>
+              
+          <% let pTypes = ["Pasteries", "Utensils", "Stationaries","Eletronics"] %>
+      
+          <select name="pType" id="" class="ptype">
+            <option value="">Product Type</option>
+              <% pTypes.forEach(function(ptype){ %>
+      
+              <option value="<%= ptype %>"><%= ptype %></option>
+      
+              <% }) %>
+          </select><br>
+
+          <p><input type="Number" name="price"  placeholder="Product price"></p>
+
+          <p><input type="text" name="address"  placeholder="Product Address"></p>
+
+          <p>Expected Time of Delivery: <input type="time" name="time"  placeholder="Delivery Time"></p>
+
+          <p>Expected Date of Delivery: <input type="date" name="dDate"  placeholder="Delivery Date"></p>
+
+              
+          <p>Image Upload: <input type="file" name="image"></p>
+      
+          <input type="submit" name="signup" value="Click to Add">
+      
+         </form>
+
+    </div>
+   
+   
+
+
+<%- include ('partials/footer') %>

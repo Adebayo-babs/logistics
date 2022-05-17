@@ -1,0 +1,45 @@
+<%- include ('partials/header') %>
+
+<div class="realtor">
+
+  
+
+    <h3><%= what %> in <%= where %></h3>
+
+    <%if(record.length === 0){ %>
+        <p>No result found</p>
+    <% } else{ %>
+    <% record.forEach(function(records){ %>
+    <h2>Username:  <%= records.username %> </h2>
+    
+    <div class="logo_2">
+     <img src="data:image/<%=records.upload.contentType%>;base64,<%=records.upload.data.toString('base64')%>" 
+     width="100" height="100">
+    </div>
+    
+    <p>Property Name: <b><%= records.pName %></b></p>
+    <p>Property Type <b><%= records.pType %></b></p>
+    <p>Rooms: <b><%= records.room %></b></p>
+    <p>Address: <b><%= records.pAddress %></b> </p>
+    <p>Price: <b><%= records.price %></b></p>
+    <p>Year Established: <b><%= records.year %></b></p>
+    <p>Registered Date: <%= records.date.toLocaleDateString() %></p>            
+    <hr>
+    <% }) %>
+    <% } %>
+</div>
+
+    <h3>Contact Realtor</h3>
+
+    <form action="/search" method="post">
+        <input type="text" name="user" placeholder="Search for a Realtor">
+        <input type="submit" name="" value="Search">
+    </form>
+                
+                
+</div>
+
+
+
+
+<%- include ('partials/footer') %>

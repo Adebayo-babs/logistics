@@ -1,0 +1,61 @@
+<%- include ('partials/header') %>
+
+
+<% if (typeof error != 'undefined') { %>
+
+        <% error.forEach(function(error){ %>
+
+              <h5 style="color: red;"><%= error.msg %></h5>
+
+        <% }) %>
+
+      <% } %>
+
+      <% if(success_msg != '') {%>
+        <h6 style="color:green"><%= success_msg %></h6>
+
+      <% } %>
+
+      <% if(error_msg != '') { %>
+
+        <h6 style="color:red"><%= error_msg %></h6>
+
+      <% } %>
+
+		<h2>Edit Order</h2>
+
+			<% record.forEach((r) => { %>
+
+				<form action="/merchant/edit/<%= r._id %>" method="post">
+						<p>Product Name: <input type="text" name="pName" value="<%= r.pName %>"></p>
+
+						<% let pTypes = ["Pasteries", "Utensils", "Stationaries","Eletronics"] %>
+      
+            <select name="pType" id="" class="pType">
+		          <option value="">Product Type</option>
+		            <% pTypes.forEach(function(pType){ %>
+		      
+		              <option value="<%= r.pType %>"><%= pType %></option>
+		      
+		              <% }) %>
+              </select><br>
+		              
+							
+						<p>Product Price: <input type="number"  name="price" value="<%= r.price %>"></p>
+
+						<p>Address: <input type="text" name="address" value="<%= r.address %>"></p> 
+		             
+		        <p>Expected Time of Delvery<input type="time" name="time" value="<%= r.time %>"></p>
+
+		        <p>Expected Date of Delvery<input type="date" name="dDate" value="<%= r.dDate %>"></p> 
+
+		        <p>Image: <input type="file" name="image" placeholder="Upload a picture of the Product"></p>
+
+						<input type="submit" name="" value="Click to Edit">
+					
+				</form>
+
+			<% }) %>
+
+<%- include ('partials/footer') %>
+

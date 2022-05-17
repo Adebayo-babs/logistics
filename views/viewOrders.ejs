@@ -1,0 +1,55 @@
+<%- include ('partials/header') %>
+
+<% if (typeof error != 'undefined') { %>
+
+        <% error.forEach(function(error){ %>
+
+              <h5 style="color: red;"><%= error.msg %></h5>
+
+        <% }) %>
+
+      <% } %>
+
+      <% if(success_msg != '') {%>
+        <h1 style="color:green"><%= success_msg %></h1>
+
+      <% } %>
+
+      <% if(error_msg != '') { %>
+
+        <h6 style="color:red"><%= error_msg %></h6>
+
+      <% } %>
+
+<div>
+    <h2>Welcome <%= username %> </h2>
+    <h4><a style="text-decoration: none;" href="/merchant/dashboard">Dashboard</a></h4>
+    <h4><a style="text-decoration: none;" href="/merchant/takeOrder">Take Order</a></h4>
+    <h4><a style="text-decoration:none;" href="/merchant/login">Sign Out</a></h4>
+    <hr>
+
+    <% record.forEach(function(records){ %>
+    
+    <p><a href="/merchant/edit/<%= records._id %>">Edit Order</a></p>
+    <p><a href="/merchant/<%= records._id %>">Delete Order</a></p>
+    
+    <div>
+     <img src="data:image/<%=records.upload.contentType%>;base64,<%=records.upload.data.toString('base64')%>" 
+     width="200" height="200">
+    </div>
+    
+    <p>Product Name: <b><%= records.pName %></b></p>
+    <p>Product Type <b><%= records.pType %></b></p>
+    <p>Price: <b><%= records.price %></b></p>
+    <p>Address: <b><%= records.address %></b> </p>
+    <p>Expected Time of Delivery: <b><%= records.time %></b></p>
+    <p>Expected Date of Delivery: <b><%= records.dDate %></b></p>
+    <p>Ordered Date: <%= records.date.toLocaleDateString() %></p>
+
+    <hr>
+    <% }) %>
+</div>
+
+
+
+<%- include ('partials/footer') %>

@@ -1,0 +1,28 @@
+<%- include ('partials/header') %>
+
+<% if(error_msg != '') { %>
+
+        <h6 style="color:red"><%= error_msg %></h6>
+
+<% } %>
+
+<% if(success_msg != '') {%>
+        <h6 style="color:green"><%= success_msg %></h6>
+<% } %>
+
+<div>
+  <form action="/merchant/login"  method="POST">
+
+    <h2>Merchant Login Page</h2>
+
+      <p><input type="text" name="username"  placeholder="Enter your username"></p>
+      <p><input type="password" name="password"  placeholder="Password"></p>
+
+      <input type="submit" name="" value="Click to Login" >
+
+      </form>
+
+</div>
+
+
+<%- include('partials/footer') %>
